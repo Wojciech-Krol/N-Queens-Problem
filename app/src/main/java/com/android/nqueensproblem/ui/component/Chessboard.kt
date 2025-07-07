@@ -1,5 +1,6 @@
 package com.android.nqueensproblem.ui.component
 
+import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -51,7 +52,8 @@ fun Chessboard(
                             hasQueen = hasQueen,
                             isConflictQueen = isConflictQueen,
                             isOnConflictPath = isOnConflictPath,
-                            onClick = { onSquareTapped(row, col) }
+                            onClick = { onSquareTapped(row, col)
+                            Log.d("Chessboard", "Square tapped: Row=$row, Col=$col")}
                         )
                     }
                 }

@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.android.nqueensproblem.R
+import com.android.nqueensproblem.ui.component.StyledButton
 import kotlin.math.roundToInt
 
 @Composable
@@ -66,12 +67,12 @@ fun SetupScreen(
         )
         Spacer(modifier = Modifier.height(32.dp))
 
-        Button(onClick = onShowLeaderboard) {
+        StyledButton(onClick = onShowLeaderboard) {
             Text("View Leaderboard")
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(
+        StyledButton(
             onClick = { onStartGame(boardSize) },
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
