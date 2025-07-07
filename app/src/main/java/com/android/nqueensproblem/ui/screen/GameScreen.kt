@@ -125,7 +125,7 @@ private fun GameInfo(gameState: GameState) {
                 modifier = Modifier.size(24.dp),
             )
             Text(
-                text = ": ${gameState.boardSize - gameState.queens.size}",
+                text = "x${gameState.boardSize - gameState.queens.size}",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onBackground
             )
