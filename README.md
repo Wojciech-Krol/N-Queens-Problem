@@ -15,7 +15,7 @@ This repository contains the source code for an Android application that impleme
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <https://github.com/Wojciech-Krol/N-Queens-Problem>
+    git clone https://github.com/Wojciech-Krol/N-Queens-Problem
     ```
 
 2.  **Open in Android Studio:**
