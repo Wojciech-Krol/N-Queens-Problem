@@ -4,19 +4,18 @@ This repository contains the source code for an Android application that impleme
 
 ## Features
 
-* **Dynamic Board Size:** Select a board size `n` from 4x4 upwards.
+* **Dynamic Board Size:** Select a board size `n` from 4x4 upwards to 14x14.
 * **Interactive Gameplay:** Tap to place and remove queens on the board.
 * **Real-time Validation:** Instantly see conflicting placements highlighted.
 * **Win Detection:** A celebration screen appears when the puzzle is solved.
 * **Local Leaderboards:** Best times are saved locally for each board size.
-* **Theming:** Switch between light and dark themes.
 * **Animations:** Smooth animations for queen placement and a confetti celebration for victories.
 
 ## How to Build and Run
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone <https://github.com/Wojciech-Krol/N-Queens-Problem>
     ```
 
 2.  **Open in Android Studio:**
@@ -79,9 +78,3 @@ The project structure also adheres to the principles of Clean Architecture, emph
 * **Dependency Rule:** Dependencies flow inwards. The UI layer depends on the ViewModel, and the ViewModel depends on the Model (Logic). The core Model layer is completely independent.
 * **Unidirectional Data Flow (UDF):** The UI state is managed by the ViewModel and exposed as an immutable `StateFlow`. The UI observes this flow and can only trigger changes by calling functions on the ViewModel. This creates a predictable and easy-to-debug data flow: `Event -> ViewModel -> State -> UI`.
 * **Repository Pattern:** For data persistence (the leaderboard), a `LeaderboardRepository` is used to abstract the data source (`Jetpack DataStore`) from the rest of the app. This makes it easy to change the data storage mechanism in the future without affecting the ViewModels.
-
-This architecture ensures the application is:
-
-* **Testable:** Each layer can be tested in isolation.
-* **Maintainable:** Code is organized by feature and responsibility, making it easy to understand and modify.
-* **Scalable:** New features can be added without requiring a major refactor of existing code.
