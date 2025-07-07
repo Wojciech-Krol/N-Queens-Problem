@@ -20,10 +20,11 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = Color.White,
     onBackground = Color.White,
     onSurface = ChessComMain,
-    surfaceVariant = ChessComBtn,
-    onSurfaceVariant = Color.White,
+    surfaceVariant = Color.White,
+    onSurfaceVariant = ChessComMain,
     primaryContainer = ChessComBtn,
     surfaceContainer = ChessComBtn,
+    error = ErrorColor
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -34,10 +35,11 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = Color.White,
     onBackground = Color.White,
     onSurface = ChessComMain,
-    surfaceVariant = ChessComBtn,
-    onSurfaceVariant = Color.White,
+    surfaceVariant = Color.White,
+    onSurfaceVariant = ChessComMain,
     primaryContainer = ChessComBtn,
     surfaceContainer = ChessComBtn,
+    error = ErrorColor
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),

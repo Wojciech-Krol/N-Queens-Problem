@@ -17,10 +17,13 @@ import kotlin.math.roundToInt
 
 @Composable
 fun SetupScreen(
+    initialBoardSize: Int,
     onStartGame: (boardSize: Int) -> Unit,
     onShowLeaderboard: () -> Unit
 ) {
-    var sliderPosition by remember { mutableFloatStateOf(4f) }
+    var sliderPosition by remember(initialBoardSize) {
+        mutableFloatStateOf(initialBoardSize.toFloat())
+    }
     val boardSize = sliderPosition.roundToInt()
 
     Column(
@@ -76,7 +79,7 @@ fun SetupScreen(
             onClick = { onStartGame(boardSize) },
             modifier = Modifier.fillMaxWidth(0.8f)
         ) {
-            Text("Start Game", style = MaterialTheme.typography.titleMedium)
+            Text("Start Game")
         }
     }
 }

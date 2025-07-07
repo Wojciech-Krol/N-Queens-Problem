@@ -3,6 +3,7 @@ package com.android.nqueensproblem.ui.screen
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -10,9 +11,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.android.nqueensproblem.R
 import com.android.nqueensproblem.game.GameState
 import com.android.nqueensproblem.ui.component.Chessboard
 import com.android.nqueensproblem.ui.component.GameControls
@@ -99,21 +102,34 @@ fun GameScreen(
 
     }
     }
-
 @Composable
 private fun GameInfo(gameState: GameState) {
     Row(
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.SpaceAround
     ) {
         Text(
             text = "Board Size: ${gameState.boardSize}x${gameState.boardSize}",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground
         )
-        Text(
-            text = "Queens Left: ${gameState.boardSize - gameState.queens.size}",
-            style = MaterialTheme.typography.titleMedium
-        )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.white_queen),
+                contentDescription = "Queens Left Image",
+                modifier = Modifier.size(24.dp),
+            )
+            Text(
+                text = ": ${gameState.boardSize - gameState.queens.size}",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+        }
     }
 }
 

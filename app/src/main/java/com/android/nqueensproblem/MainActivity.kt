@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import com.android.nqueensproblem.ui.screen.GameScreen
+import com.android.nqueensproblem.ui.screen.LeaderboardScreen
 import com.android.nqueensproblem.ui.screen.SetupScreen
 import com.android.nqueensproblem.ui.theme.NQueensProblemTheme
-import com.android.nqueensproblem.ui.screen.LeaderboardScreen
 
 sealed class Screen {
     data object Setup : Screen()
@@ -19,14 +19,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var isDarkTheme by remember { mutableStateOf(false) }
+            var lastPlayedBoardSize by remember { mutableStateOf(4) }
 
-            NQueensProblemTheme {
+            NQueensProblemTheme(
+                darkTheme = isDarkTheme,
+                dynamicColor = false
+            ) {
                 var currentScreen: Screen by remember { mutableStateOf(Screen.Setup) }
 
                 when (val screen = currentScreen) {
                     is Screen.Setup -> {
                         SetupScreen(
-
+                            initialBoardSize = lastPlayedBoardSize,
                             onStartGame = { boardSize ->
                                 currentScreen = Screen.Game(boardSize)
                             },
@@ -38,7 +43,10 @@ class MainActivity : ComponentActivity() {
                     is Screen.Game -> {
                         GameScreen(
                             boardSize = screen.boardSize,
-                            onNavigateBack = { currentScreen = Screen.Setup }
+                            onNavigateBack = {
+                                lastPlayedBoardSize = screen.boardSize
+                                currentScreen = Screen.Setup
+                            }
                         )
                     }
                     is Screen.Leaderboard -> {
