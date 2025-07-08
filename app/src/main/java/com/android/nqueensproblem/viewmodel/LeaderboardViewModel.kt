@@ -21,11 +21,7 @@ class LeaderboardViewModel(application: Application) : AndroidViewModel(applicat
 
     val selectedBoardSize: StateFlow<Int> = _selectedBoardSize.asStateFlow()
 
-    /**
-     * Exposes the best times for the currently selected board size
-     * It uses `flatMapLatest` to automatically switch to the new data flow
-     * whenever `selectedBoardSize` changes.
-     */
+
     @OptIn(ExperimentalCoroutinesApi::class)
     val bestTimes: StateFlow<List<Long>> = _selectedBoardSize.flatMapLatest { boardSize ->
         leaderboardRepository.getBestTimes(boardSize)

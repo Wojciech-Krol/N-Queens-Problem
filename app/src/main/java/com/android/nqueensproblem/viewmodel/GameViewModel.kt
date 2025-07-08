@@ -1,4 +1,3 @@
-// In viewmodel/GameViewModel.kt
 package com.android.nqueensproblem.viewmodel
 
 import android.app.Application

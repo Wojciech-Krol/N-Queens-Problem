@@ -1,7 +1,8 @@
+package com.android.nqueensproblem.viewmodel
+
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.nqueensproblem.game.Position
-import com.android.nqueensproblem.viewmodel.GameViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -44,8 +45,8 @@ class GameViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         val queens = viewModel.gameState.value.queens
-        assertTrue(queens.contains(Position(0, 0)))
-        assertEquals(1, queens.size)
+        assertTrue("Queen should be at (0,0)", queens.contains(Position(0, 0)))
+        assertEquals("There should be 1 queen on the board", 1, queens.size)
     }
 
     @Test
@@ -58,7 +59,25 @@ class GameViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         val queens = viewModel.gameState.value.queens
-        assertTrue(queens.isEmpty())
+        assertTrue("The board should be empty", queens.isEmpty())
     }
-    
+
+    @Test
+    fun `resetGame clears the board and win state`() = runTest {
+        viewModel.resetGame(4)
+
+        viewModel.onSquareTapped(0, 0)
+        viewModel.onSquareTapped(1, 1)
+        testDispatcher.scheduler.advanceUntilIdle()
+        assertFalse(viewModel.gameState.value.queens.isEmpty())
+
+        viewModel.resetGame(5) //different size to test that too
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        val state = viewModel.gameState.value
+        assertEquals("Board size should be updated to 5", 5, state.boardSize)
+        assertTrue("Queens set should be empty after reset", state.queens.isEmpty())
+        assertFalse("isWin should be false after reset", state.isWin)
+    }
+
 }
